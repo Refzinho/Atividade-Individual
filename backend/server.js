@@ -1,10 +1,13 @@
 //aqui vai ficar a configuração do express
 
 const express = require("express");
-const { describe } = require("node:test");
+const cors = require("cors");
+
 const app = express();  
 
+app.use(cors());
 app.use(express.json());
+
 
 const treinamento = [
     {
@@ -17,13 +20,14 @@ const treinamento = [
 ];
 
 app.post("/treinamento", (req, res) => {
-    const adicionarTreinamento = [{
+
+    const adicionarTreinamento = {
         id: treinamento.length + 1,
         titulo: req.body.titulo,
         descricao: req.body.descricao,
         categoria: req.body.categoria,
         duracao: req.body.duracao
-    }];
+    };
 
     treinamento.push(adicionarTreinamento);
     res.status(201).json(adicionarTreinamento);

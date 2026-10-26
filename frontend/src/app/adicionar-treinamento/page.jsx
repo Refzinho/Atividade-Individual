@@ -1,6 +1,5 @@
 "use client";
-import { useState } from "react";
-
+import {useEffect, useState} from "react";
 export default function AdicionarTreinamento() {
 
 const [treinamentos, setTreinamentos] = useState([]);
@@ -9,19 +8,40 @@ const [descricao, setDescricao] = useState("");
 const [categoria, setCategoria] = useState("");
 const [duracao, setDuracao] = useState("");
 
-function adicionar(event){
-    event.preventDefault();
+useEffect(() => {
+    fetch("http://localhost:3001/treinamento")
+        .then(resposta => resposta.json())
+        .then(dados => {
+            console.log("Treinamentos:",dados);
+            setTreinamentos(dados);
+        });
+}, []);
 
-    const novoTreinamento = {
-    titulo: titulo,
-    descricao: descricao,
-    categoria: categoria,
-    duracao: duracao
-}
+    async function adicionar(event) {
+        event.preventDefault();
 
-setTreinamentos([...treinamentos, novoTreinamento]);
+        const novoTreinamento = {
+            titulo: titulo,
+            descricao: descricao,
+            categoria: categoria,
+            duracao: duracao
+    };
+    
+    const resposta = await fetch ("http://localhost:3001/treinamento", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(novoTreinamento)
+    });
+    
+    const dados = await resposta.json();
+    console.log(dados);
+    
 
-console.log(novoTreinamento);
+
+setTreinamentos([...treinamentos, dados]);
+
 }
 
 
@@ -37,7 +57,7 @@ console.log(novoTreinamento);
             </form>
             <div>
                 {treinamentos.map(treinamento => (
-                    <div key={treinamento.titulo}>
+                    <div key={treinamento.id}>
                         <h2>{treinamento.titulo}</h2>
                         <p>{treinamento.descricao}</p>
                         <p>{treinamento.categoria}</p>
