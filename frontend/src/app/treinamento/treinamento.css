@@ -1,0 +1,29 @@
+.list-toolbar { display: flex; justify-content: space-between; gap: 20px; align-items: center; padding: 17px 20px; background: #fff; border: 1px solid #e6eaf4; border-radius: 15px; margin-bottom: 23px; }
+.count-info { display: flex; align-items: center; gap: 11px; font-size: 13px; color: #8792aa; white-space: nowrap; }
+.count-info strong { background: #efecff; border-radius: 8px; padding: 9px 12px; color: #6452e0; font-size: 15px; }
+.search-field { display: flex; align-items: center; gap: 9px; background: #fafbff; border: 1px solid #e5e9f1; border-radius: 10px; padding: 0 13px; min-height: 43px; width: min(100%, 360px); color: #a0a9bb; }
+.search-field:focus-within { border-color: #8d80ee; box-shadow: 0 0 0 3px #7368e71b; }
+.search-field > span:not(.sr-only) { font-size: 24px; line-height: 1; }
+.search-field input { background: transparent; border: none; outline: none; width: 100%; color: #33405c; min-width: 0; font-size: 13px; }
+.search-field input::placeholder { color: #a3adbe; }
+.training-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.training-card { background: #fff; border: 1px solid #e5e9f3; border-radius: 17px; padding: 27px 28px 25px; box-shadow: 0 8px 25px #26365b07; display: flex; flex-direction: column; min-height: 300px; transition: box-shadow 0.2s, transform 0.2s; }
+.training-card:hover { box-shadow: 0 13px 33px #26365b12; transform: translateY(-2px); }
+.card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 19px; }
+.category-badge { background: #eeebff; color: #6654d5; font-weight: 750; border-radius: 7px; padding: 6px 10px; font-size: 11px; }
+.card-id { color: #b2baca; font-size: 12px; font-weight: 700; }
+.training-card h2 { font-size: 20px; letter-spacing: -0.65px; line-height: 1.35; margin: 0 0 11px; }
+.training-description { font-size: 13px; color: #7c889f; line-height: 1.8; margin: 0 0 22px; flex: 1; }
+.training-duration { font-size: 13px; color: #8a95ac; display: flex; gap: 6px; align-items: center; padding-bottom: 18px; border-bottom: 1px solid #eef0f5; }
+.training-duration > span { font-size: 20px; color: #7b6ce7; }
+.training-duration strong { color: #59637e; }
+.card-actions { display: flex; align-items: center; gap: 11px; padding-top: 20px; }
+.card-actions .button { flex: 1; }
+
+@media (max-width: 850px) { .training-grid { grid-template-columns: 1fr; } }
+@media (max-width: 600px) {
+  .list-toolbar { align-items: stretch; flex-direction: column; }
+  .search-field { width: 100%; }
+  .training-card { padding: 23px 20px; }
+  .card-actions { flex-wrap: wrap; }
+}
